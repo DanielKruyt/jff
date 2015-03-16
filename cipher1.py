@@ -55,8 +55,7 @@ while not quit:
                     ctxt += chr(o)
                 print("The ciphertext (encrypted message) is:",ctxt)
     elif c == 3:
-        print()
-        #            
+        print("This isn't functional yet")
     elif c == 4:
         quit = True
     else:
