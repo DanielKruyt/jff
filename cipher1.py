@@ -2,6 +2,8 @@
 # Daniel Kruyt
 # 12/03/2015
 
+import math
+
 print("Welcome to the cipher program.")
 
 quit = False
@@ -55,7 +57,35 @@ while not quit:
                     ctxt += chr(o)
                 print("The ciphertext (encrypted message) is:",ctxt)
     elif c == 3:
-        print("This isn't functional yet")
+        modulus = 2**16 + 1 # a handy prime
+        base = 5 # a smaller, equally handy prime
+        alice = int( input("Pick an integer: "))
+        alicebup = alice
+        ap = 1
+        col = 5
+        while alice > 0: # fast modular exponentiation
+            if alice % 2 == 1:
+                ap *= col
+                ap %= modulus
+            alice //= 2
+            col *= col
+            col %= modulus
+        print("Give this to the other person: ",ap)
+        bp = int( input("Enter what the other person sent to you: "))
+        secret = 1
+        alice = alicebup
+        col = bp
+        while alice > 0:
+            if alice % 2 == 1:
+                secret *= col
+                secret %= modulus
+            alice //= 2
+            col *= col
+            col % modulus
+        print("The shared secret is",secret)
+        print("Go check with the other person!")
+                
+        
     elif c == 4:
         quit = True
     else:
